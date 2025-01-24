@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NZTechEvents.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ed398f65f3ee45d1a6fb756f91d5bd57cf65900")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1359a9619deb96240e6e5ef962e344e47e85967f")]
 [assembly: System.Reflection.AssemblyProductAttribute("NZTechEvents.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NZTechEvents.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
