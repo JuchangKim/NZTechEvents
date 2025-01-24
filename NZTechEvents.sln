@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZTechEvents.Web", "NZTechEvents.Web\NZTechEvents.Web.csproj", "{E3883D16-9474-47AF-AB31-6AF7BB8D781A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZTechEvents.Core", "NZTechEvents.Core\NZTechEvents.Core.csproj", "{45A1E37B-4991-47B5-ACF0-7C059D666696}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZTechEvents.Infrastructure", "NZTechEvents.Infrastructure\NZTechEvents.Infrastructure.csproj", "{31501108-79DC-42E6-9E99-8844FD338996}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NZTechEvents.Tests", "NZTechEvents.Tests\NZTechEvents.Tests.csproj", "{880CF64B-42BB-41E3-AFA2-563A825B93CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3883D16-9474-47AF-AB31-6AF7BB8D781A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3883D16-9474-47AF-AB31-6AF7BB8D781A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3883D16-9474-47AF-AB31-6AF7BB8D781A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3883D16-9474-47AF-AB31-6AF7BB8D781A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A1E37B-4991-47B5-ACF0-7C059D666696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A1E37B-4991-47B5-ACF0-7C059D666696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A1E37B-4991-47B5-ACF0-7C059D666696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A1E37B-4991-47B5-ACF0-7C059D666696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31501108-79DC-42E6-9E99-8844FD338996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31501108-79DC-42E6-9E99-8844FD338996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31501108-79DC-42E6-9E99-8844FD338996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31501108-79DC-42E6-9E99-8844FD338996}.Release|Any CPU.Build.0 = Release|Any CPU
+		{880CF64B-42BB-41E3-AFA2-563A825B93CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{880CF64B-42BB-41E3-AFA2-563A825B93CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{880CF64B-42BB-41E3-AFA2-563A825B93CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{880CF64B-42BB-41E3-AFA2-563A825B93CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
