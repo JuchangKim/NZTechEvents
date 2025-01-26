@@ -1,5 +1,6 @@
 using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using NZTechEvents.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,18 +26,28 @@ var cosmosContainerName = builder.Configuration["Cosmos:Container"];
 
 var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
 builder.Services.AddSingleton(cosmosClient);
-builder.Services.AddSingleton<EventRepository>(sp =>
-    new EventRepository(cosmosClient, cosmosDbName, cosmosContainerName));
+builder.Services.AddSingleton(sp => new EventRepository(cosmosClient, cosmosDbName, cosmosContainerName));
 
-// --------------------------------------------------
-// 3. Add Controllers
-// --------------------------------------------------
-builder.Services.AddControllers();
-
-// Build the app
 var app = builder.Build();
 
-// Optional: app.UseHttpsRedirection();
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

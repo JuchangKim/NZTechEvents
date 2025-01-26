@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "vvOPuPnSCEw0B1g8WzAxvhfm5BzSdH4fjM7X9l9a2bE=",
+  "Source": "NZTechEvents.Web",
+  "BasePath": "_content/NZTechEvents.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

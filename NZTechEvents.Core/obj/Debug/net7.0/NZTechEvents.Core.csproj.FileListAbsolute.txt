@@ -1,0 +1,12 @@
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\bin\Debug\net7.0\NZTechEvents.Core.deps.json
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\bin\Debug\net7.0\NZTechEvents.Core.dll
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\bin\Debug\net7.0\NZTechEvents.Core.pdb
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\NZTechEvents.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\NZTechEvents.Core.AssemblyInfoInputs.cache
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\NZTechEvents.Core.AssemblyInfo.cs
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\NZTechEvents.Core.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\NZTechEvents.Core.sourcelink.json
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\NZTechEvents.Core.dll
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\refint\NZTechEvents.Core.dll
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\NZTechEvents.Core.pdb
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Core\obj\Debug\net7.0\ref\NZTechEvents.Core.dll
