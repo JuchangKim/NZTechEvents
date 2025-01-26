@@ -1,0 +1,30 @@
+# STAGE 1: Build
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+
+# Copy the SLN and csproj files to restore dependencies
+COPY *.sln .
+COPY ../NZTechEvents.Core/NZTechEvents.Core.csproj ../NZTechEvents.Core/
+COPY ../NZTechEvents.Infrastructure/NZTechEvents.Infrastructure.csproj ../NZTechEvents.Infrastructure/
+COPY NZTechEvents.Web.csproj .
+# If you have a separate test project or other projects, copy them similarly
+
+# Restore
+RUN dotnet restore NZTechEvents.Web.csproj
+
+# Copy everything else and build
+COPY . .
+COPY ../NZTechEvents.Core ../NZTechEvents.Core
+COPY ../NZTechEvents.Infrastructure ../NZTechEvents.Infrastructure
+
+RUN dotnet build -c Release -o /app/build
+
+# Publish
+RUN dotnet publish -c Release -o /app/publish
+
+# STAGE 2: Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish .
+EXPOSE 80
+ENTRYPOINT ["dotnet", "NZTechEvents.Web.dll"]
