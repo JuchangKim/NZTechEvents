@@ -20,25 +20,34 @@ builder.Services.AddDbContext<NZTechEventsDbContext>(options =>
 // 2. Configure CosmosClient for Events
 // --------------------------------------------------
 var cosmosEndpoint = builder.Configuration["Cosmos:Endpoint"];
-var cosmosKey = builder.Configuration["Cosmos:Key"];
-var cosmosDbName = builder.Configuration["Cosmos:Database"];
+var cosmosKey      = builder.Configuration["Cosmos:Key"];
+var cosmosDbName   = builder.Configuration["Cosmos:Database"];
 var cosmosContainerName = builder.Configuration["Cosmos:Container"];
 
 var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
 builder.Services.AddSingleton(cosmosClient);
 builder.Services.AddSingleton(sp => new EventRepository(cosmosClient, cosmosDbName, cosmosContainerName));
 
+// --------------------------------------------------
+// 3. Add Controllers with Views (MVC) & Razor
+// --------------------------------------------------
+builder.Services.AddControllersWithViews();
+// or builder.Services.AddRazorPages(); if you prefer Razor Pages
+// builder.Services.AddControllers(); if you want Web API only
+
+// Build the app
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
+    app.UseExceptionHandler("/Home/Error");
+    // In .NET 8, you still typically use HSTS in production
+    app.UseHsts();
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
@@ -48,6 +57,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllers();
+// --------------------------------------------------
+// 5. Map routes
+// --------------------------------------------------
+// For a typical MVC route (Home/Index as default):
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// If you have attribute-routed controllers, you could also do:
+ // app.MapControllers(); 
+
+// Run the app
 app.Run();

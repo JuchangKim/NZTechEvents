@@ -1,0 +1,62 @@
+@model NZTechEvents.Web.Models.HomePageViewModel
+@{
+    ViewData["Title"] = "NZTechEvents - Home";
+    Layout = "../Shared/_Layout";
+}
+
+<!-- Hero / Banner Section -->
+<div class="hero-section text-center text-white d-flex align-items-center justify-content-center"
+     style="background: url('../wwwroot/images/Back-ground.jpg') center center; background-size: cover; height: 300px;">
+    <div>
+        <h2>Make some link and share your interests, experience</h2>
+        <p>New Zealand Tech events can link to your interest, knowledge with other people.</p>
+    </div>
+</div>
+
+<!-- MAIN CONTENT AREA -->
+<div class="container mt-5">
+    <!-- Upcoming Events -->
+    <h3>Upcoming Events</h3>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mb-5">
+        @foreach (var evt in Model.UpcomingEvents)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <!-- optional company logo -->
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">@evt.Title</h5>
+                        <p class="card-text">
+                            <strong>Date:</strong> @evt.Date.ToString("dd MMM yyyy")<br />
+                            <strong>Location:</strong> @evt.Location<br />
+                            <strong>Fee:</strong> @(evt.IsFree ? "Free" : "Paid")<br />
+                            <strong>Description:</strong> @evt.Description
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Past Events -->
+    <h3>Past Events</h3>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var evt in Model.PastEvents)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <!-- optional company logo -->
+                    <div class="card-body">
+                        <h5 class="card-title">@evt.Title</h5>
+                        <p class="card-text">
+                            <strong>Date:</strong> @evt.Date.ToString("dd MMM yyyy")<br />
+                            <strong>Location:</strong> @evt.Location<br />
+                            <strong>Fee:</strong> @(evt.IsFree ? "Free" : "Paid")<br />
+                            <strong>Description:</strong> @evt.Description
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

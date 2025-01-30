@@ -12,7 +12,7 @@ namespace NZTechEvents.Core.Entities
         public string Description { get; set; } = null!;
         public string Industry { get; set; } = null!;
         public string RegistrationLink { get; set; } = null!;
-        
+        public string ImageUrl { get; set; } = null!;
         // A list of user comments:
         public List<Comment> Comments { get; set; } = new List<Comment>();
     }
