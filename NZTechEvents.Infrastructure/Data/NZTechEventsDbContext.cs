@@ -12,7 +12,8 @@ namespace NZTechEvents.Infrastructure.Data
         }
 
         public DbSet<User> Users => Set<User>();
-
+        public DbSet<Event> Events => Set<Event>(); // to define the Events DbSet
+        public DbSet<Comment> Comments => Set<Comment>();
         // OnModelCreating if needed for custom configurations
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

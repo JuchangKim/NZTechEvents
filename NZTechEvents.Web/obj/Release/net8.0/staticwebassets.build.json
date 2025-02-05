@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dFsfcfXsz9dXyz5tcDwubBzXdTy3EmGY7L9pRQYmMM0=",
+  "Hash": "Rs7/tVNwD9y50NIRri/GJ5cpbwIxvw4Fx8RQHcVyP0s=",
   "Source": "NZTechEvents.Web",
   "BasePath": "_content/NZTechEvents.Web",
   "Mode": "Default",
@@ -15,6 +15,44 @@
       "Pattern": "**"
     }
   ],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\user\\Documents\\GitHub\\NZTechEvents\\NZTechEvents.Web\\wwwroot\\css\\site.css",
+      "SourceId": "NZTechEvents.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\NZTechEvents\\NZTechEvents.Web\\wwwroot\\",
+      "BasePath": "_content/NZTechEvents.Web",
+      "RelativePath": "css/site.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\user\\Documents\\GitHub\\NZTechEvents\\NZTechEvents.Web\\wwwroot\\images\\Back-ground.jpg",
+      "SourceId": "NZTechEvents.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\NZTechEvents\\NZTechEvents.Web\\wwwroot\\",
+      "BasePath": "_content/NZTechEvents.Web",
+      "RelativePath": "images/Back-ground.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Back-ground.jpg"
+    }
+  ]
 }

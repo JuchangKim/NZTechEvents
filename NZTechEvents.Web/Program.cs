@@ -2,6 +2,9 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NZTechEvents.Infrastructure.Data;
+using NZTechEvents.Core.Entities;
+using Microsoft.Azure.Cosmos.Linq;
+using Azure.Storage.Blobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,16 +31,31 @@ var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
 builder.Services.AddSingleton(cosmosClient);
 builder.Services.AddSingleton(sp => new EventRepository(cosmosClient, cosmosDbName, cosmosContainerName));
 
-// --------------------------------------------------
-// 3. Add Controllers with Views (MVC) & Razor
-// --------------------------------------------------
 builder.Services.AddControllersWithViews();
 // or builder.Services.AddRazorPages(); if you prefer Razor Pages
 // builder.Services.AddControllers(); if you want Web API only
 
+// Set up Blobstorage for images
+var blobConnectionString = builder.Configuration.GetConnectionString("BlobStorage");
+builder.Services.AddSingleton(new BlobServiceClient(blobConnectionString));
+
+
 // Build the app
 var app = builder.Build();
 
+// Seed the database
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var dbContext = services.GetRequiredService<NZTechEventsDbContext>();
+    // Delete the database if it exists
+    dbContext.Database.EnsureDeleted();
+    
+    // Ensure the database is created
+    dbContext.Database.EnsureCreated();
+    
+    SeedData.Initialize(dbContext);
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -66,7 +84,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 // If you have attribute-routed controllers, you could also do:
- // app.MapControllers(); 
+// app.MapControllers(); 
 
 // Run the app
 app.Run();

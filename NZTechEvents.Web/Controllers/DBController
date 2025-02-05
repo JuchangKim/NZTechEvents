@@ -1,0 +1,10 @@
+// Adding a new action to upload an image to Azure Blob Storage
+
+[HttpPost("upload-image")]
+public async Task<IActionResult> UploadImage(IFormFile file)
+{
+    if (file == null || file.Length == 0) return BadRequest("No file");
+    using var stream = file.OpenReadStream();
+    var imageUrl = await _imageService.UploadImageAsync("events-images", stream, file.FileName);
+    return Ok(new { ImageUrl = imageUrl });
+}

@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\user\\Documents\\GitHub\\NZTechEvents\\NZTechEvents.Web\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\user\\Documents\\GitHub\\NZTechEvents\\NZTechEvents.Web\\wwwroot\\images\\Back-ground.jpg",
+      "PackagePath": "staticwebassets\\images\\Back-ground.jpg"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.NZTechEvents.Web.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.NZTechEvents.Web.props",
+      "PackagePath": "build\\NZTechEvents.Web.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.NZTechEvents.Web.props",
+      "PackagePath": "buildMultiTargeting\\NZTechEvents.Web.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.NZTechEvents.Web.props",
+      "PackagePath": "buildTransitive\\NZTechEvents.Web.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

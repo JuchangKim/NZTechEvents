@@ -19,3 +19,5 @@ C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Infrastructure\obj\Debu
 C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Infrastructure\obj\Debug\net8.0\refint\NZTechEvents.Infrastructure.dll
 C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Infrastructure\obj\Debug\net8.0\NZTechEvents.Infrastructure.pdb
 C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Infrastructure\obj\Debug\net8.0\ref\NZTechEvents.Infrastructure.dll
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Infrastructure\bin\Debug\net8.0\NZTechEvents.Infrastructure.runtimeconfig.json
+C:\Users\user\Documents\GitHub\NZTechEvents\NZTechEvents.Infrastructure\obj\Debug\net8.0\NZTechEvents.Infrastructure.genruntimeconfig.cache
