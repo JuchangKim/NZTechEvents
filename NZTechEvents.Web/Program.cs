@@ -1,3 +1,5 @@
+//Program.cs
+
 using Microsoft.Azure.Cosmos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -5,8 +7,17 @@ using NZTechEvents.Infrastructure.Data;
 using NZTechEvents.Core.Entities;
 using Microsoft.Azure.Cosmos.Linq;
 using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient("NZTechEventsAPI", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5000/"); // Set the base address for the API
+});
 
 // --------------------------------------------------
 // 1. Configure EF Core for SQL Server (Users)
@@ -24,21 +35,16 @@ builder.Services.AddDbContext<NZTechEventsDbContext>(options =>
 // --------------------------------------------------
 var cosmosEndpoint = builder.Configuration["Cosmos:Endpoint"];
 var cosmosKey      = builder.Configuration["Cosmos:Key"];
-var cosmosDbName   = builder.Configuration["Cosmos:Database"];
-var cosmosContainerName = builder.Configuration["Cosmos:Container"];
+var cosmosDbName   = builder.Configuration["Cosmos:Database"] ?? throw new ArgumentNullException("Cosmos:Database");
+var cosmosContainerName = builder.Configuration["Cosmos:Container"] ?? throw new ArgumentNullException("Cosmos:Container");
 
 var cosmosClient = new CosmosClient(cosmosEndpoint, cosmosKey);
 builder.Services.AddSingleton(cosmosClient);
 builder.Services.AddSingleton(sp => new EventRepository(cosmosClient, cosmosDbName, cosmosContainerName));
 
-builder.Services.AddControllersWithViews();
-// or builder.Services.AddRazorPages(); if you prefer Razor Pages
-// builder.Services.AddControllers(); if you want Web API only
-
 // Set up Blobstorage for images
-var blobConnectionString = builder.Configuration.GetConnectionString("BlobStorage");
+var blobConnectionString = builder.Configuration.GetConnectionString("BlobStorage") ?? throw new ArgumentNullException("BlobStorage");
 builder.Services.AddSingleton(new BlobServiceClient(blobConnectionString));
-
 
 // Build the app
 var app = builder.Build();
@@ -48,13 +54,21 @@ using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var dbContext = services.GetRequiredService<NZTechEventsDbContext>();
-    // Delete the database if it exists
-    dbContext.Database.EnsureDeleted();
-    
-    // Ensure the database is created
-    dbContext.Database.EnsureCreated();
-    
-    SeedData.Initialize(dbContext);
+    var eventRepository = services.GetRequiredService<EventRepository>();
+
+    try
+    {
+        // Ensure the database is created
+        dbContext.Database.EnsureCreated();
+
+        // Seed data into both databases
+        await SeedData.Initialize(dbContext, eventRepository);
+    }
+    catch (Exception ex)
+    {
+        // Log the exception (you can use a logging framework here)
+        Console.WriteLine($"An error occurred while seeding the database: {ex.Message}");
+    }
 }
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

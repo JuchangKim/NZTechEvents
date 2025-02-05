@@ -1,32 +1,51 @@
+//SeedData.cs
+
 using NZTechEvents.Core.Entities;
 using NZTechEvents.Infrastructure.Data;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 public static class SeedData
 {
-    public static void Initialize(NZTechEventsDbContext context)
+    public static async Task Initialize(NZTechEventsDbContext context, EventRepository eventRepository)
     {
+        // Ensure the SQL Server database is created
+        context.Database.EnsureCreated();
+
         // Seed Users
         SeedUsers(context);
 
         // Seed Events
-        SeedEvents(context);
+        await SeedEvents(eventRepository);
     }
 
-    private static void SeedEvents(NZTechEventsDbContext context)
+    private static void SeedUsers(NZTechEventsDbContext context)
     {
-        // Check if any events exist
-        if (context.Events.Any())
+        if (!context.Users.Any())
         {
-            return;   // DB has been seeded
+            context.Users.AddRange(
+                new User { Email = "a@a.a", PasswordHash = "Hash123!", Name = "Alice Johnson" },
+                new User { Email = "abc@abc.abc", PasswordHash = "Hash456!", Name = "Bob Sanders" },
+                new User { Email = "ab@ab.ab", PasswordHash = "Hash789!", Name = "Carol Adams" }
+            );
+            context.SaveChanges();
         }
-    
+    }
+
+    private static async Task SeedEvents(EventRepository eventRepository)
+    {
+        var events = await eventRepository.GetAllEventsAsync().ToListAsync();
+        if (events.Any())
+        {
+            return; // DB has been seeded
+        }
+
         var eventsToSeed = new Event[]
         {
             new Event
             {
-                Id = "evt-1001",
+                id = "evt-1001", // Ensure this property is populated
                 EventId = "evt-1001",
                 Title = "Tech Innovations Expo 2025",
                 Date = DateTime.Parse("2025-06-15T09:00:00Z"),
@@ -40,14 +59,17 @@ public static class SeedData
                 {
                     new Comment
                     {
+                        id = "1", // Ensure this property is populated
                         CommentDate = DateTime.Parse("2025-04-01T10:00:00Z"),
-                        Content = "Looking forward to this event!"
+                        Content = "Looking forward to this event!",
+                        EventId = "evt-1001",
+                        UserName = "Alice"
                     }
                 }
             },
             new Event
             {
-                Id = "evt-1002",
+                id = "evt-1002", // Ensure this property is populated
                 EventId = "evt-1002",
                 Title = "AI & Machine Learning Meetup",
                 Date = DateTime.Parse("2025-04-02T18:00:00Z"),
@@ -61,17 +83,20 @@ public static class SeedData
                 {
                     new Comment
                     {
+                        id = "2", // Ensure this property is populated
                         CommentDate = DateTime.Parse("2025-03-20T08:45:00Z"),
-                        Content = "Will there be a Q&A session?"
+                        Content = "Will there be a Q&A session?",
+                        EventId = "evt-1002",
+                        UserName = "Rob"
                     }
                 }
             },
             new Event
             {
-                Id = "evt-1003",
+                id = "evt-1003", // Ensure this property is populated
                 EventId = "evt-1003",
                 Title = "Cloud Summit NZ",
-                Date = DateTime.Parse("2025-08-10T10:00:00Z"), // or new DateTime(2025, 8, 10, 10, 0, 0, DateTimeKind.Utc)
+                Date = DateTime.Parse("2025-08-10T10:00:00Z"),
                 Location = "Online",
                 Type = "online",
                 IsFree = false,
@@ -82,14 +107,17 @@ public static class SeedData
                 {
                     new Comment
                     {
+                        id = "3", // Ensure this property is populated
                         CommentDate = DateTime.Parse("2025-06-15T12:00:00Z"),
-                        Content = "Hoping to see a session on hybrid cloud!"
+                        Content = "Hoping to see a session on hybrid cloud!",
+                        EventId = "evt-1003",
+                        UserName = "Aiden"
                     }
                 }
             },
             new Event
             {
-                Id = "evt-1004",
+                id = "evt-1004", // Ensure this property is populated
                 EventId = "evt-1004",
                 Title = "Cybersecurity Workshop",
                 Date = DateTime.Parse("2025-03-10T14:00:00Z"),
@@ -103,14 +131,17 @@ public static class SeedData
                 {
                     new Comment
                     {
+                        id = "4", // Ensure this property is populated
                         CommentDate = DateTime.Parse("2025-02-25T09:30:00Z"),
-                        Content = "Is there a certificate after completion?"
+                        Content = "Is there a certificate after completion?",
+                        EventId = "evt-1004",
+                        UserName = "Chris"
                     }
                 }
             },
             new Event
             {
-                Id = "evt-1005",
+                id = "evt-1005", // Ensure this property is populated
                 EventId = "evt-1005",
                 Title = "AR/VR Hackathon",
                 Date = DateTime.Parse("2025-01-25T09:00:00Z"),
@@ -124,15 +155,17 @@ public static class SeedData
                 {
                     new Comment
                     {
-                        // e.g. no content or date yet
+                        id = "5", // Ensure this property is populated
                         CommentDate = DateTime.UtcNow,
-                        Content = "Registered with a team!"
+                        Content = "Registered with a team!",
+                        EventId = "evt-1005",
+                        UserName = "Jay"
                     }
                 }
             },
             new Event
             {
-                Id = "evt-1006",
+                id = "evt-1006", // Ensure this property is populated
                 EventId = "evt-1006",
                 Title = "Blockchain Conference",
                 Date = DateTime.Parse("2025-05-20T09:00:00Z"),
@@ -146,33 +179,19 @@ public static class SeedData
                 {
                     new Comment
                     {
+                        id = "6", // Ensure this property is populated
                         CommentDate = DateTime.UtcNow,
-                        Content = "Can't wait to learn about DeFi!"
+                        Content = "Can't wait to learn about DeFi!",
+                        EventId = "evt-1006",
+                        UserName = "Xia"
                     }
                 }
             }
-            // More events if needed
-            // Add more events as needed
         };
 
         foreach (var evt in eventsToSeed)
         {
-            context.Events.Add(evt);
-        }
-
-        context.SaveChanges();
-    }
-
-    private static void SeedUsers(NZTechEventsDbContext context)
-    {
-        if (!context.Users.Any())
-        {
-            context.Users.AddRange(
-                new User { Email = "a@a.a", PasswordHash = "Hash123!", Name = "Alice Johnson" },
-                new User { Email = "abc@abc.abc", PasswordHash = "Hash456!", Name = "Bob Sanders" },
-                new User { Email = "ab@ab.ab", PasswordHash = "Hash789!", Name = "Carol Adams" }
-            );
-            context.SaveChanges();
+            await eventRepository.CreateEventAsync(evt);
         }
     }
 }

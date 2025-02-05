@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace NZTechEvents.Core.Entities
 {
     public class Event
-    {   public string Id { get; set; } = null!;
+    {   public string id { get; set; } = null!;
         public string EventId { get; set; } = Guid.NewGuid().ToString();
         public string Title { get; set; } = null!;
         public DateTime Date { get; set; }
